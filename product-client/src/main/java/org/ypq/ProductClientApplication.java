@@ -19,5 +19,9 @@ public class ProductClientApplication {
         System.out.println("master commit 1 C5");
         System.out.println("master commit 2 C6");
     }
+
+    public void hotfix() {
+        System.out.println("hotfix commit  1  C8");
+    }
 }
 
