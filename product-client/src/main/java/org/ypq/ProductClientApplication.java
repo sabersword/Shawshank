@@ -15,6 +15,7 @@ public class ProductClientApplication {
 
     public void test() {
         System.out.println("master commit 1 C5");
+        System.out.println("master commit 2 C6");
     }
 }
 
