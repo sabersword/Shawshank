@@ -22,6 +22,7 @@ public class ProductClientApplication {
 
     public void hotfix() {
         System.out.println("hotfix commit  1  C8");
+        System.out.println("hotfix commit  2  C9");
     }
 }
 
