@@ -12,5 +12,9 @@ public class ProductClientApplication {
         SpringApplication.run(ProductClientApplication.class, args);
 
     }
+
+    public void test() {
+        System.out.println("master commit 1 C5");
+    }
 }
 
