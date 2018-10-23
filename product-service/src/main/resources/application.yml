@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-provider
+  boot:
+    admin:
+      client:
+        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
+  rabbitmq: 
+    host: localhost
+    port: 5672
+    username: godigmh
+    password: 0123456789
+
+
+mq:
+  exchange: fanout.exchange
+  queue:
+    info:
+      name: info.log.queue
+      routing:
+        key: info.routing.key
+
+    error:
+      name: error.log.queue
+      routing:
+        key: error.routing.key
+
+    all:
+      name: all.log.queue
+      routing:
+        key: all.routing.key
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
+
+# 暴露监控接点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

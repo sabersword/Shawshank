@@ -1,0 +1,10 @@
+# eureka配置
+# 注册中心端口
+eureka:
+  server1:
+    hostname: eureka1
+    port: 8761
+  server2:
+    hostname: eureka2
+    port: 8762
+

@@ -1,0 +1,10 @@
+# eureka配置
+# 注册中心端口
+eureka:
+  server1:
+    hostname: aliyun-eureka1
+    port: 8761
+  server2:
+    hostname: aliyun-eureka2
+    port: 8762
+

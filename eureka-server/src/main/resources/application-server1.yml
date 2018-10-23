@@ -1,0 +1,9 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: eureka1
+  server:
+    other-instance: eureka2
+    other-port: 8762

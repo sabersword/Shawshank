@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: eureka-server
+  boot:
+    admin:
+      context-path: /admin
+
+eureka:
+#  instance:
+#    hostname: localhost
+  client:
+    # 通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server.
+#    register-with-eureka: false
+#    fetch-registry: false
+    # 将自己注册到两个服务器上
+    service-url.defaultZone:  http://${eureka.instance.hostname}:${server.port}/eureka/, http://${eureka.server.other-instance}:${eureka.server.other-port}/eureka/
+    eureka-server-u-r-l-context:
+  server:
+    # 关闭自我保护
+    enable-self-preservation: false
+
+
+# 暴露监控接点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
