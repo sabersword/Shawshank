@@ -10,7 +10,7 @@ public class ProductClientApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProductClientApplication.class, args);
-
+        System.out.println("test");
     }
 }
 
