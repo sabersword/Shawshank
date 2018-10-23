@@ -12,6 +12,7 @@ public class ProductClientApplication {
         SpringApplication.run(ProductClientApplication.class, args);
         System.out.println("bug commit 1  C3");
         System.out.println("bug commit 2  C4");
+        System.out.println("bug commit 3  C10");
     }
 
     public void test() {
