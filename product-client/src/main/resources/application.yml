@@ -14,7 +14,19 @@ spring:
       client:
         url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
 
-
+eureka-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    OkToRetryOnAllOperations: true
+    MaxAutoRetries: 2
+    MaxAutoRetriesNextServer: 0
+    ConnectTimeout: 3000
+    ReadTimeout: 3000
+#    指定具体的服务器
+#    listOfServers: 120.79.181.160:8080
+#ribbon:
+#  eureka:
+#    enabled: false
 
 #spring.application.name=Spring Boot Client
 #spring.rabbitmq.host=localhost

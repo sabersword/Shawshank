@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+//import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -26,7 +26,7 @@ import java.util.Random;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@EnableEurekaClient
+//@EnableEurekaClient
 @EnableFeignClients
 @ActiveProfiles({"aliyun"})
 public class ProductClientTests {
@@ -83,7 +83,7 @@ public class ProductClientTests {
     public void testFeign() {
 	    List<Product> products = productService.getProducts();
         for (Product p : products) {
-            System.err.println(p.getId() + " " + p.getName());
+            logger.info("{}, {}", p.getId(), p.getName());
         }
         Assert.assertEquals(3, products.size());
     }
