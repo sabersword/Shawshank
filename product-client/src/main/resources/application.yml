@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8090
 
 spring:
   application:
-    name: Spring Boot Client
+    name: eureka-consumer
   rabbitmq:
     host: localhost
     port: 5672
@@ -12,7 +12,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://${eureka.server1.hostname}:${eureka.server1.port}
+        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
 
 
 
@@ -74,10 +74,12 @@ management:
     web:
       exposure:
         include: "*"
+      base-path: "/actuator"
   endpoint:
     health:
       show-details: always
-
+    shutdown:
+      enabled: true
 
 #feign:
 #  httpclient:

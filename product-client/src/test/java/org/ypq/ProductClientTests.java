@@ -3,6 +3,8 @@ package org.ypq;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.client.ServiceInstance;
@@ -38,6 +40,8 @@ public class ProductClientTests {
 	@Autowired
 	private ProductService productService;
 
+	private static final Logger logger = LoggerFactory.getLogger(ProductClientTests.class);
+
 	@Test
 	public void contextLoads() {
 	}
@@ -57,17 +61,21 @@ public class ProductClientTests {
 
     @Test
     public void testEurekaClient() throws InterruptedException {
-	    ServiceInstance si = loadBalancerClient.choose("eureka-provider");
-	    StringBuffer sb = new StringBuffer("");
-	    sb.append("http://").append(si.getHost()).append(":").append(si.getPort()).append("/products");
-        RestTemplate rt = new RestTemplate();
-        ParameterizedTypeReference<List<Product>> typeReference = new ParameterizedTypeReference<List<Product>>() {};
-        ResponseEntity<List<Product>> responseEntity = rt.exchange(sb.toString(), HttpMethod.GET, null, typeReference);
-        List<Product> plist = responseEntity.getBody();
-        for (Product p : plist) {
-            System.err.println(p.getId() + " " + p.getName());
+	    for (int i = 0; i < 10; i++) {
+            ServiceInstance si = loadBalancerClient.choose("eureka-provider");
+            StringBuffer sb = new StringBuffer("");
+            sb.append("http://").append(si.getHost()).append(":").append(si.getPort()).append("/product-service-api/getProducts");
+            logger.info("第{}次ribbon获取的地址是{}", i, sb.toString());
+            RestTemplate rt = new RestTemplate();
+            ParameterizedTypeReference<List<Product>> typeReference = new ParameterizedTypeReference<List<Product>>() {
+            };
+            ResponseEntity<List<Product>> responseEntity = rt.exchange(sb.toString(), HttpMethod.GET, null, typeReference);
+            List<Product> plist = responseEntity.getBody();
+            for (Product p : plist) {
+                logger.info("{}, {}", p.getId(), p.getName());
+            }
+            Assert.assertEquals(3, plist.size());
         }
-        Assert.assertEquals(1, plist.size());
 
     }
 
