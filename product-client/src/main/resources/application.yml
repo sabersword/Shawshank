@@ -28,23 +28,6 @@ eureka-provider:
 #  eureka:
 #    enabled: false
 
-#spring.application.name=Spring Boot Client
-#spring.rabbitmq.host=localhost
-#spring.rabbitmq.port=5672
-#spring.rabbitmq.username=godigmh
-#spring.rabbitmq.password=0123456789
-
-#mq.exchange=fanout.exchange
-#
-#mq.queue.info.name=info.log.queue
-#mq.queue.info.routing.key=info.routing.key
-#
-#mq.queue.error.name=error.log.queue
-#mq.queue.error.routing.key=error.routing.key
-#
-#mq.queue.all.name=all.log.queue
-#mq.queue.all.routing.key=all.routing.key
-
 mq:
   exchange: fanout.exchange
   queue:
@@ -63,19 +46,9 @@ mq:
       routing:
         key: all.routing.key
 
-#eureka1.server.port=8761
-#eureka2.server.port=8762
-#eureka.instance.hostname1=eureka1
-#eureka.instance.hostname2=eureka2
-
 
 eureka:
-#  server1:
-#    hostname: aliyun-eureka1
-#    port: 8761
-#  server2:
-#    hostname: aliyun-eureka2
-#    port: 8762
+
   client:
     service-url:
       defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/

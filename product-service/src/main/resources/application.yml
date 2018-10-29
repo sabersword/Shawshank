@@ -13,7 +13,11 @@ spring:
     port: 5672
     username: godigmh
     password: 0123456789
-
+  redis:
+    database: 0
+    cluster:
+      nodes: 127.0.0.1:10000, 127.0.0.1:10001, 127.0.0.1:10002, 127.0.0.1:10003, 127.0.0.1:10004, 127.0.0.1:10005
+      max-redirects: 10
 
 mq:
   exchange: fanout.exchange
@@ -51,3 +55,5 @@ management:
       show-details: always
     shutdown:
       enabled: true
+
+
