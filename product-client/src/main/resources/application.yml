@@ -66,6 +66,10 @@ management:
     shutdown:
       enabled: true
 
+logging:
+  level:
+    org.ypq.service.ProductService: debug
+
 #feign:
 #  httpclient:
 #    enable: true

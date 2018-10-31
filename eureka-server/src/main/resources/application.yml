@@ -5,6 +5,7 @@ spring:
     admin:
       context-path: /admin
 
+
 eureka:
 #  instance:
 #    hostname: localhost
@@ -18,6 +19,8 @@ eureka:
   server:
     # 关闭自我保护
     enable-self-preservation: false
+  instance:
+    prefer-ip-address: true
 
 
 # 暴露监控接点
