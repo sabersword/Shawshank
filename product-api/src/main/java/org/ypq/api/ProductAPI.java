@@ -5,7 +5,7 @@ import org.ypq.domain.Product;
 
 import java.util.List;
 
-@RequestMapping("/product-service-api")
+//@RequestMapping("/product-service-api")
 public interface ProductAPI {
 
     @RequestMapping(value = "/getOneProduct")

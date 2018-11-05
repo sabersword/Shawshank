@@ -38,10 +38,10 @@ mq:
         key: all.routing.key
 
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
 
 # 暴露监控接点
 management:
@@ -55,5 +55,4 @@ management:
       show-details: always
     shutdown:
       enabled: true
-
 

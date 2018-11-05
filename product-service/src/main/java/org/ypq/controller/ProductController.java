@@ -15,11 +15,11 @@ import java.util.List;
 
 @CacheConfig(cacheNames = {"ypq.cache"})
 @RestController
-public class ProductController implements ProductAPI {
+public class ProductController implements ProductAPI{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
-    @Override
+//    @Override
     public Product getOneProduct(int id) {
         Product product = new Product();
         product.setId(11);
@@ -27,7 +27,8 @@ public class ProductController implements ProductAPI {
         return product;
     }
 
-    @Override
+//    @Override
+    @RequestMapping(value = "/getProducts")
     public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
         Product product = new Product();
@@ -45,7 +46,7 @@ public class ProductController implements ProductAPI {
         return products;
     }
 
-    @Cacheable(key = "'productCache' + #id")
+//    @Cacheable(key = "'productCache' + #id")
     @RequestMapping(value = "/get")
     public Product get(int id) {
         LOGGER.info("对id={}进行了缓存", id);
