@@ -36,6 +36,8 @@
             <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
         <!--</dependency>-->
 
+        <!--引入这个包之后,才能使用cglib代理-->
+        <!--不然controller使用JDK代理的话,方法里加@Cacheable注解会出问题-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
