@@ -2,6 +2,7 @@ package org.ypq.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ypq.api.ProductAPI;
 import org.ypq.domain.Product;
+import org.ypq.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,9 @@ import java.util.List;
 public class ProductController implements ProductAPI {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
+
+    @Autowired
+    private ProductService productService;
 
     @Override
     public Product getOneProduct(int id) {
@@ -29,20 +34,7 @@ public class ProductController implements ProductAPI {
 
     @Override
     public List<Product> getProducts() {
-        List<Product> products = new ArrayList<>();
-        Product product = new Product();
-        product.setId(1);
-        product.setName("test1");
-        products.add(product);
-        product = new Product();
-        product.setId(2);
-        product.setName("test2");
-        products.add(product);
-        product = new Product();
-        product.setId(3);
-        product.setName("test3");
-        products.add(product);
-        return products;
+        return productService.generateProducts();
     }
 
     @Cacheable(key = "'productCache' + #id")
