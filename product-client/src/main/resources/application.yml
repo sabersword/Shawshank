@@ -48,7 +48,6 @@ mq:
 
 
 eureka:
-
   client:
     service-url:
       defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
@@ -69,6 +68,7 @@ management:
 logging:
   level:
     org.ypq.service.ProductService: debug
+
 
 #feign:
 #  httpclient:

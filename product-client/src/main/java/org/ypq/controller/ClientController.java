@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.ypq.api.ProductAPI;
 import org.ypq.domain.Product;
 import org.ypq.service.ProductService;
 
@@ -17,27 +18,19 @@ public class ClientController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/testGetOneProduct")
+    @RequestMapping(value = "/getOneProduct")
     public Product getOneProduct(int id) {
-        Product product = new Product();
-        product.setId(11);
-        product.setName("test11");
-        return product;
+        return productService.getOneProduct(id);
     }
 
-    @RequestMapping(value = "/testGetProducts")
+    @RequestMapping(value = "/getProducts")
     public List<Product> getProducts() {
         return productService.getProducts();
     }
 
-    @RequestMapping(value = "/get")
-    public Product get(int id) {
-        // TODO 数据库耗时操作
-        return new Product(id, "我要测试缓存");
-    }
-
-    @RequestMapping(value = "/delete")
-    public void delete(int id) {
+    @RequestMapping(value = "/updateProduct")
+    public Product updateProduct(int id) {
+        return productService.updateProduct(id);
     }
 
 }
