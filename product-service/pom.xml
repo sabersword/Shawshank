@@ -91,6 +91,50 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- Docker maven plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <!--执行 mvn package 时 自动 执行 mvn docker:build-->
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--推送到私有仓库-->
+                    <!-- <imageName>localhost:5000/fox/fox-eureka-server</imageName> -->
+                    <!--指定远程仓库-->
+                    <dockerHost>http://112.74.62.242:2375</dockerHost>
+                    <imageName>springboot/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>0.0.1</imageTag>
+                        <!--可以指定多个标签-->
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <!--覆盖已存在的标签 镜像-->
+                    <forceTags>true</forceTags>
+                    <!--使用pom 配置-->
+                    <!--<baseImage>java</baseImage>-->
+                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>-->
+                    <!--使用pom 配置 END-->
+                    <!--使用 Dockerfile-->
+                    <dockerDirectory>${basedir}</dockerDirectory>
+                    <!--使用 Dockerfile  END-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
