@@ -39,7 +39,7 @@ public class ProductController implements ProductAPI {
         products.add(product);
         product = new Product();
         product.setId(2);
-        product.setName("test1写2");
+        product.setName("test12写死才怪");
         products.add(product);
         product = new Product();
         product.setId(3);
