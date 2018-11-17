@@ -2,12 +2,9 @@ package org.ypq.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ypq.api.ProductAPI;
 import org.ypq.domain.Product;
@@ -32,7 +29,7 @@ public class ProductController implements ProductAPI {
     }
 
     @Override
-    @Cacheable(key = "'productCache-all'")
+//    @Cacheable(key = "'productCache-all'")
     public List<Product> getProducts() {
         LOGGER.info("getProducts方法没有命中缓存,id={}");
         List<Product> products = new ArrayList<>();
@@ -42,7 +39,7 @@ public class ProductController implements ProductAPI {
         products.add(product);
         product = new Product();
         product.setId(2);
-        product.setName("test1写死我测试啊");
+        product.setName("test1写2");
         products.add(product);
         product = new Product();
         product.setId(3);
