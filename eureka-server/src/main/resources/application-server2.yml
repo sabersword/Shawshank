@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: eureka2
+    hostname: docker-host
   server:
-    other-instance: eureka1
+    other-instance: docker-host
     other-port: 8761

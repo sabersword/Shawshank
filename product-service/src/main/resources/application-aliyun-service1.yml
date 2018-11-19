@@ -2,11 +2,11 @@
 # 注册中心端口
 eureka:
   server1:
-    hostname: aliyun-eureka1
+    hostname: docker-host
     port: 8761
   server2:
-    hostname: aliyun-eureka2
+    hostname: docker-host
     port: 8762
 server:
-  port: 8080
+  port: 8090
 
