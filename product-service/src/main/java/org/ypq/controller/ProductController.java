@@ -29,7 +29,7 @@ public class ProductController implements ProductAPI {
     }
 
     @Override
-//    @Cacheable(key = "'productCache-all'")
+    @Cacheable(key = "'productCache-all'")
     public List<Product> getProducts() {
         LOGGER.info("getProducts方法没有命中缓存,id={}");
         List<Product> products = new ArrayList<>();

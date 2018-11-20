@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration  scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
-    <!--这个配置暂时米用-->
-    <property name="log.path1" value="tmp/logback1.log" />
-    <property name="log.path2" value="tmp/logback2.log" />
+    <property name="log.path1" value="tmp/service1.log" />
+    <property name="log.path2" value="tmp/service2.log" />
     <!--输出到控制台-->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -14,7 +13,7 @@
         </encoder>
     </appender>
 
-    <!--输出到文件-->
+    <!--输出到文件 service1-->
     <appender name="service1" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path1}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -25,7 +24,7 @@
         </encoder>
     </appender>
 
-    <!--输出到文件-->
+    <!--输出到文件 service2-->
     <appender name="service2" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path2}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
