@@ -72,6 +72,18 @@ logging:
   level:
     org.ypq.service.ProductService: debug
 
+# Hystrix默认的超时时间是1秒，如果超过这个时间尚未响应，将会进入fallback代码。
+# 而首次请求往往会比较慢（因为Spring的懒加载机制，要实例化一些类），这个响应时间可能就大于1秒了。
+# 知道原因后，我们来总结一下解决放你。解决方案有三种，以feign为例。
+# 该配置是让Hystrix的超时时间改为5秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
 
 #feign:
 #  httpclient:
