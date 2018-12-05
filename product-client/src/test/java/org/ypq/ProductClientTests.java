@@ -46,18 +46,18 @@ public class ProductClientTests {
 	public void contextLoads() {
 	}
 
-	@Test
-	public void testSender() throws InterruptedException {
-	    Random random = new Random();
-		while(true) {
-		    Thread.sleep(1000);
-            if (random.nextInt(2) > 0 ) {
-                sender.sendInfo();
-            } else {
-                sender.sendError();
-            }
-        }
-	}
+//	@Test
+//	public void testSender() throws InterruptedException {
+//	    Random random = new Random();
+//		while(true) {
+//		    Thread.sleep(1000);
+//            if (random.nextInt(2) > 0 ) {
+//                sender.sendInfo();
+//            } else {
+//                sender.sendError();
+//            }
+//        }
+//	}
 
     @Test
     public void testEurekaClient() throws InterruptedException {
