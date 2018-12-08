@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ypq.api.ProductAPI;
 import org.ypq.domain.Product;
@@ -19,7 +21,7 @@ public class ProductController implements ProductAPI {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     @Override
-    @Cacheable(key = "'productCache' + #id")
+//    @Cacheable(key = "'productCache' + #id")
     public Product getOneProduct(Integer id) {
         LOGGER.info("getOneProduct方法没有命中缓存,id={}", id);
         Product product = new Product();
@@ -29,7 +31,7 @@ public class ProductController implements ProductAPI {
     }
 
     @Override
-    @Cacheable(key = "'productCache-all'")
+//    @Cacheable(key = "'productCache-all'")
     public List<Product> getProducts() {
         LOGGER.info("getProducts方法没有命中缓存,id={}");
         List<Product> products = new ArrayList<>();
@@ -49,7 +51,7 @@ public class ProductController implements ProductAPI {
     }
 
     @Override
-    @CacheEvict(key = "'productCache' + #id")
+//    @CacheEvict(key = "'productCache' + #id")
     public Product updateProduct(Integer id) {
         LOGGER.info("updateProduct方法清除缓存,id={}", id);
         Product product = new Product();
@@ -59,7 +61,7 @@ public class ProductController implements ProductAPI {
     }
 
     @Override
-    public List<Product> batchProducts(List<Integer> ids) {
+    public List<Product> batchProducts(@RequestBody List<Integer> ids) {
         LOGGER.info("提供方-进行合并请求,总共有{}个id,他们分别是{}", ids.size(), ids.toArray());
         List<Product> products = new ArrayList<>();
         for (Integer i : ids) {
