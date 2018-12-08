@@ -54,6 +54,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
+  instance:
+    # 表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance
+    # 如果该值太大，则很可能将流量转发过去的时候，该instance已经不存活了。
+    # 如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
+    # 该值至少应该大于leaseRenewalIntervalInSeconds
+    lease-expiration-duration-in-seconds: 10
+    # 表示eureka client发送心跳给server端的频率。
+    # 如果在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance。
+    # 除此之外，如果该instance实现了HealthCheckCallback，并决定让自己unavailable的话，则该instance也不会接收到流量。
+    lease-renewal-interval-in-seconds: 5
 
 # 暴露监控接点
 management:
