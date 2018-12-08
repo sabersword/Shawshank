@@ -19,6 +19,8 @@ eureka:
   server:
     # 关闭自我保护
     enable-self-preservation: false
+    # 配置Eureka Server清理无效节点的时间间隔,5秒
+    eviction-interval-timer-in-ms: 5000
   instance:
     prefer-ip-address: true
 
