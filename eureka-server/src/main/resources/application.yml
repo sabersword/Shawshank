@@ -37,3 +37,11 @@ management:
       show-details: always
     shutdown:
       enabled: true
+
+
+turbine:
+  app-config: eureka-consumer
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: "'default'"
+  instanceUrlSuffix: actuator/hystrix.stream

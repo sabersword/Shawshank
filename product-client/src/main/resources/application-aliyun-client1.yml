@@ -1,0 +1,11 @@
+# eureka配置
+# 注册中心端口
+eureka:
+  server1:
+    hostname: docker-host
+    port: 8761
+  server2:
+    hostname: docker-host
+    port: 8762
+server:
+  port: 8081

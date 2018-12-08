@@ -22,8 +22,10 @@ docker run --name service-container2 -v /root/dockerlog:/tmp -d -p 8091:8091 -e 
 
 cd $directory/product-client
 mvn docker:build
-docker ps -a | grep 'client-container'|awk '{print $1}'|xargs -r docker rm -f
-docker run --name client-container -v /root/dockerlog:/tmp -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=aliyun" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/product-client
+docker ps -a | grep 'client-container1'|awk '{print $1}'|xargs -r docker rm -f
+docker ps -a | grep 'client-container2'|awk '{print $1}'|xargs -r docker rm -f
+docker run --name client-container1 -v /root/dockerlog:/tmp -d -p 8081:8081 -e "SPRING_PROFILES_ACTIVE=aliyun-client1" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/product-client
+docker run --name client-container2 -v /root/dockerlog:/tmp -d -p 8082:8082 -e "SPRING_PROFILES_ACTIVE=aliyun-client2" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/product-client
 
 
 docker images | grep none | awk '{print $3}' | xargs -rt docker rmi -f

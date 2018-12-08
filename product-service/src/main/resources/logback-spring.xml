@@ -68,10 +68,5 @@
         </root>
     </springProfile>
 
-    <!-- logback为java中的包 -->
-    <!--<logger name="com.dudu.controller"/>-->
-    <!--logback.LogbackDemo：类的全路径 -->
-    <!--<logger name="com.dudu.controller.LearnController" level="WARN" additivity="false">-->
-        <!--<appender-ref ref="console"/>-->
-    <!--</logger>-->
+
 </configuration>

@@ -7,3 +7,10 @@ eureka:
   server:
     other-instance: docker-host
     other-port: 8762
+
+turbine:
+  app-config: eureka-consumer
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: "'default'"
+  instanceUrlSuffix: actuator/hystrix.stream
