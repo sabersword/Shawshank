@@ -58,5 +58,18 @@ public class ProductController implements ProductAPI {
         return product;
     }
 
+    @Override
+    public List<Product> batchProducts(List<Integer> ids) {
+        LOGGER.info("提供方-进行合并请求,总共有{}个id,他们分别是{}", ids.size(), ids.toArray());
+        List<Product> products = new ArrayList<>();
+        for (Integer i : ids) {
+            Product product = new Product();
+            product.setId(i);
+            product.setName("test" + i);
+            products.add(product);
+        }
+        return products;
+    }
+
 
 }

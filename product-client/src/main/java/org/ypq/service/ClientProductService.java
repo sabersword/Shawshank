@@ -32,17 +32,12 @@ public class ClientProductService {
     public Product getOneProduct(Integer id) {
         return null;
     }
-
     @HystrixCommand
     public List<Product> batchGetOneProduct(List<Integer> ids) {
-        LOGGER.info("进行合并请求,总共有{}个id,他们分别是{}", ids.size(), ids.toArray());
-        List<Product> products = new ArrayList<>();
-        for (Integer id : ids) {
-            products.add(productService.getOneProduct(id));
-        }
+        LOGGER.info("消费方-进行合并请求,总共有{}个id,他们分别是{}", ids.size(), ids.toArray());
+        List<Product> products = productService.batchProducts(ids);
         return products;
     }
-
 
 
     @HystrixCommand(fallbackMethod = "getProductsFallBack", commandProperties = {
@@ -51,7 +46,6 @@ public class ClientProductService {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
-
     public List<Product> getProductsFallBack() {
         Product product = new Product();
         product.setId(-1);
@@ -60,7 +54,6 @@ public class ClientProductService {
         products.add(product);
         return products;
     }
-
 
 
     public Product updateProduct(Integer id) {
