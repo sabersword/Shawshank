@@ -8,31 +8,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ypq.domain.Product;
 import org.ypq.service.ClientProductService;
+import org.ypq.service.ZuulService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class ClientController {
+public class ZuulController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZuulController.class);
 
     @Autowired
-    private ClientProductService clientProductService;
+    private ZuulService zuulService;
 
-    @RequestMapping(value = "/getOneProduct")
+    @RequestMapping(value = "/zuul/getOneProduct")
     public Product getOneProduct(Integer id) throws InterruptedException, ExecutionException {
-        return clientProductService.getOneProduct(id);
+        LOGGER.info("通过zuul路由");
+        return zuulService.getOneProduct(id);
     }
 
-    @RequestMapping(value = "/getProducts")
+    @RequestMapping(value = "/zuul/getProducts")
     public List<Product> getProducts() {
-        return clientProductService.getProducts();
+        LOGGER.info("通过zuul路由");
+        return zuulService.getProducts();
     }
 
-    @RequestMapping(value = "/updateProduct")
+    @RequestMapping(value = "/zuul/updateProduct")
     public Product updateProduct(int id) {
-        return clientProductService.updateProduct(id);
+        LOGGER.info("通过zuul路由");
+        return zuulService.updateProduct(id);
     }
 
 }

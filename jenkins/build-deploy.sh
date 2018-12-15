@@ -12,6 +12,14 @@ docker run --name server-container1 -v /root/dockerlog:/tmp -d -p 8761:8761 -e "
 docker run --name server-container2 -v /root/dockerlog:/tmp -d -p 8762:8762 -e "SPRING_PROFILES_ACTIVE=server2" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/eureka-server
 
 
+cd $directory/zuul
+mvn docker:build
+docker ps -a | grep 'zuul-container1'|awk '{print $1}'|xargs -r docker rm -f
+docker ps -a | grep 'zuul-container2'|awk '{print $1}'|xargs -r docker rm -f
+docker run --name zuul-container1 -v /root/dockerlog:/tmp -d -p 8070:8070 -e "SPRING_PROFILES_ACTIVE=aliyun-zuul1" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/zuul
+docker run --name zuul-container2 -v /root/dockerlog:/tmp -d -p 8071:8071 -e "SPRING_PROFILES_ACTIVE=aliyun-zuul2" -h docker-host --add-host=docker-host:`docker network inspect  --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge` springboot/zuul
+
+
 cd $directory/product-service
 mvn docker:build
 docker ps -a | grep 'service-container1'|awk '{print $1}'|xargs -r docker rm -f

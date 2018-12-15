@@ -93,7 +93,10 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 5000
-
+# 暂时由client来做zuul请求的服务,所以这里加大超时时间
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 10000
 
 #feign:
 #  httpclient:

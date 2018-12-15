@@ -9,7 +9,6 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableHystrix
-@EnableHystrixDashboard
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication

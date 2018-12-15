@@ -20,6 +20,7 @@
         <module>eureka-server</module>
         <module>product-service</module>
         <module>product-client</module>
+        <module>zuul</module>
     </modules>
 
     <properties>

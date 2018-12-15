@@ -1,0 +1,62 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: zuul
+  boot:
+    admin:
+      client:
+        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
+
+# ribbon.ReadTimeout， ribbon.SocketTimeout这两个就是ribbon超时时间设置，
+# 当在yml写时，应该是没有提示的，给人的感觉好像是不是这么配的一样，其实不用管它，直接配上就生效了。
+
+# 还有zuul.host.connect-timeout-millis， zuul.host.socket-timeout-millis这两个配置，
+# 这两个和上面的ribbon都是配超时的。区别在于，如果路由方式是serviceId的方式，那么ribbon的生效，如果是url的方式，则zuul.host开头的生效。（
+# 此处重要！使用serviceId路由和url路由是不一样的超时策略）
+
+zuul:
+  host:
+      # 如果返回gateway timeout,网关超时。这是因为默认情况下，zuul的熔断机制超时时间是2秒，当一个服务响应的时间较长就会报网关超时错误。
+      # 适当延长网关超时时间, 实际上这个超时没有生效,ribbon的才生效(在service路由模式下)
+      connect-timeout-millis: 10000
+      socket-timeout-millis: 20000
+  ignored-services: "*"
+  routes:
+    eureka-consumer:
+      path: /product-api/**
+# 在使用service来路由的时候,这个超时才生效
+ribbon:
+  ReadTimeout: 10000
+  SocketTimeout: 10000
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.server1.hostname}:${eureka.server1.port}/eureka/,http://${eureka.server2.hostname}:${eureka.server2.port}/eureka/
+    instance:
+      # 表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance
+      # 如果该值太大，则很可能将流量转发过去的时候，该instance已经不存活了。
+      # 如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
+      # 该值至少应该大于leaseRenewalIntervalInSeconds
+      lease-expiration-duration-in-seconds: 10
+      # 表示eureka client发送心跳给server端的频率。
+      # 如果在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance。
+      # 除此之外，如果该instance实现了HealthCheckCallback，并决定让自己unavailable的话，则该instance也不会接收到流量。
+      lease-renewal-interval-in-seconds: 5
+
+# 暴露监控接点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/actuator"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+
