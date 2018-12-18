@@ -26,6 +26,15 @@ zuul:
   routes:
     eureka-consumer:
       path: /product-api/**
+  # 限流相关
+  ratelimit:
+    enabled: true
+    default-policy:
+      limit: 5  # 每个刷新时间窗口对应的请求数量限制
+      refresh-interval: 60 # 新时间窗口的时间，默认值 (秒)
+      quota: 30 # 每个刷新时间窗口对应的请求时间限制（秒）
+      type: URL # 这里一定要大写!!! ORIGIN/USER/URL,origin对IP限流,url对特定的url限流,user对特定用户限流
+
 # 在使用service来路由的时候,这个超时才生效
 ribbon:
   ReadTimeout: 10000
@@ -59,4 +68,3 @@ management:
       show-details: always
     shutdown:
       enabled: true
-
