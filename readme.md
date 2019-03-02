@@ -10,7 +10,7 @@
 - 单节点hystrix数据地址是/actuator/hystrix.stream
 - turbine数据地址是http://docker-host:8761/turbine.stream
 - hystrix-dashboard的地址是http://aliyun-eureka1:8761/hystrix
-
+- eureka-server和spring-boot-admin部署在一起,各个应用只需要连到eureka,就可以不需要显式配置连接spring-boot-admin,就能实现监控
 
 ##### 服务提供方
 

@@ -67,7 +67,7 @@ public class ProductController implements ProductAPI {
         for (Integer i : ids) {
             Product product = new Product();
             product.setId(i);
-            product.setName("test" + i);
+            product.setName("test1-" + i);
             products.add(product);
         }
         return products;

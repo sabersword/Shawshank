@@ -34,13 +34,13 @@ public class ClientProductService {
     public Product getOneProduct(Integer id) {
         return null;
     }
+
     @HystrixCommand
     public List<Product> batchGetOneProduct(List<Integer> ids) {
         LOGGER.info("消费方-进行合并请求,总共有{}个id,他们分别是{}", ids.size(), ids.toArray());
         List<Product> products = productService.batchProducts(ids);
         return products;
     }
-
 
     @HystrixCommand(fallbackMethod = "getProductsFallBack", commandProperties = {
             @HystrixProperty(name = HystrixPropertiesManager.FALLBACK_ISOLATION_SEMAPHORE_MAX_CONCURRENT_REQUESTS, value = "15"),
@@ -54,6 +54,7 @@ public class ClientProductService {
         }
         return productService.getProducts();
     }
+
     public List<Product> getProductsFallBack() {
         Product product = new Product();
         product.setId(-1);
@@ -62,7 +63,6 @@ public class ClientProductService {
         products.add(product);
         return products;
     }
-
 
     public Product updateProduct(Integer id) {
         return productService.updateProduct(id);

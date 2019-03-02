@@ -9,10 +9,10 @@ spring:
     port: 5672
     username: godigmh
     password: 0123456789
-  boot:
-    admin:
-      client:
-        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
+#  boot:
+#    admin:
+#      client:
+#        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
   devtools:
     restart:
       enabled: false

@@ -4,10 +4,10 @@ server:
 spring:
   application:
     name: eureka-provider
-  boot:
-    admin:
-      client:
-        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
+#  boot:
+#    admin:
+#      client:
+#        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
   rabbitmq: 
     host: localhost
     port: 5672

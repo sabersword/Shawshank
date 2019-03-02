@@ -4,10 +4,10 @@ server:
 spring:
   application:
     name: zuul
-  boot:
-    admin:
-      client:
-        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
+#  boot:
+#    admin:
+#      client:
+#        url: http://${eureka.server1.hostname}:${eureka.server1.port}/admin
 
 # ribbon.ReadTimeout， ribbon.SocketTimeout这两个就是ribbon超时时间设置，
 # 当在yml写时，应该是没有提示的，给人的感觉好像是不是这么配的一样，其实不用管它，直接配上就生效了。
