@@ -19,6 +19,11 @@ spring:
 #      nodes: 127.0.0.1:10000, 127.0.0.1:10001, 127.0.0.1:10002, 127.0.0.1:10003, 127.0.0.1:10004, 127.0.0.1:10005
       nodes: docker-host:10000, docker-host:10001, docker-host:10002, docker-host:10003, docker-host:10004, docker-host:10005
       max-redirects: 10
+  zipkin:
+    base-url: http://docker-host:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 
 mq:
   exchange: fanout.exchange
@@ -66,3 +71,4 @@ management:
       show-details: always
     shutdown:
       enabled: true
+

@@ -16,6 +16,11 @@ spring:
   devtools:
     restart:
       enabled: false
+  zipkin:
+    base-url: http://docker-host:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 
 eureka-provider:
   ribbon:

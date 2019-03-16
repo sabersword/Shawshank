@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.ypq.domain.Product;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ClientProductService {
             @HystrixProperty(name = "maxRequestsInBatch", value = "200")
     })
     public Product getOneProduct(Integer id) {
+        LOGGER.info("难道合并不了请求");
         return null;
     }
 
